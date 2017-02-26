@@ -33,6 +33,4 @@ RUN mkdir -p /usr/share/jenkins/ref/jobs/MitosisGeneratorJob/workspace/
 COPY build/create-seed-job.groovy /usr/share/jenkins/ref/init.groovy.d/
 # COPY Seed Job DSL script
 COPY dsl/*.groovy /usr/share/jenkins/ref/jobs/MitosisGeneratorJob/workspace/
-# COPY config
-COPY config/*.xml /usr/share/jenkins/ref/
 
