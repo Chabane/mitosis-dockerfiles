@@ -17,7 +17,7 @@ RUN set -x \
 	&& docker -v
 
 # Install default plugins
-RUN /usr/local/bin/install-plugins.sh ansible:0.5 artifactory:2.8.2 sonar:2.5 git:3.0.1 subversion:2.7.1 matrix-auth:1.4 workflow-aggregator:2.4 docker-workflow:1.9.1 docker-commons:1.5 blueocean:1.0.0-b13 job-dsl:1.53 pipeline-maven:0.4 gradle:1.25 swarm:2.2 kubernetes:0.10
+RUN /usr/local/bin/install-plugins.sh ansible:0.5 artifactory:2.8.2 sonar:2.5 git:3.0.1 subversion:2.7.1 matrix-auth:1.4 workflow-aggregator:2.4 docker-workflow:1.9.1 docker-commons:1.5 blueocean:1.0.0-b13 job-dsl:1.53 pipeline-maven:0.4 swarm:2.2 kubernetes:0.10
 
 ENV JENKINS_USER admin
 ENV JENKINS_PASS admin
@@ -33,4 +33,6 @@ RUN mkdir -p /usr/share/jenkins/ref/jobs/MitosisGeneratorJob/workspace/
 COPY build/create-seed-job.groovy /usr/share/jenkins/ref/init.groovy.d/
 # COPY Seed Job DSL script
 COPY dsl/*.groovy /usr/share/jenkins/ref/jobs/MitosisGeneratorJob/workspace/
+# COPY config
+# COPY config/*.xml /usr/share/jenkins/ref/
 
