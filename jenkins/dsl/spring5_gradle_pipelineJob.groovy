@@ -14,8 +14,8 @@ pipelineJob("spring5-gradle-pipeline") {
                        sh './gradlew build'
 
                       stage "deploy"
-                       sh 'docker build -t mitosis/microservice-spring-reactor:1.0.0-alpha.0 .'
-                       sh 'docker run -d -p 9991:8080 mitosis/microservice-spring-reactor:1.0.0-alpha.0'
+                       sh 'docker build -t mitosis/microservice-spring-reactor .'
+                       sh 'docker service create --name microservice-spring-reactor --publish 9991:8080 --network microservices-net --replicas 2 mitosis/microservice-spring-reactor'
                 }                 
             """.stripIndent())
         }
