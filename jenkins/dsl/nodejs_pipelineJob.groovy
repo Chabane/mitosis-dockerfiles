@@ -4,7 +4,7 @@ pipelineJob("nodejs-pipeline") {
             sandbox()
             script("""
                 node {
-                      sh 'nvm use 6'
+                      sh 'nvm install 6 && nvm use 6'
 
                         stage ("checkout") {
                             git url : 'https://github.com/NirbyApp/mitosis-microservice-nodejs-angular.git'
