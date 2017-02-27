@@ -16,7 +16,7 @@ RUN set -x \
 	&& rmdir docker \
 	&& rm docker.tgz \
 	&& docker -v \
-	&& curl -o- "https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh" | bash
+	&& curl -fsSL "https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh" | sh
 
 # Install default plugins
 RUN /usr/local/bin/install-plugins.sh ansible:0.5 artifactory:2.8.2 sonar:2.5 git:3.0.1 subversion:2.7.1 matrix-auth:1.4 workflow-aggregator:2.4 docker-workflow:1.9.1 docker-commons:1.5 blueocean:1.0.0-b13 job-dsl:1.53 pipeline-maven:0.4 swarm:2.2 kubernetes:0.10 nodejs:1.1.2
