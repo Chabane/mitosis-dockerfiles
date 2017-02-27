@@ -11,6 +11,7 @@ pipelineJob("nodejs-pipeline") {
                         }
  
                         stage ("install") {
+                            sh 'npm install -g yarn'
                             sh 'yarn'
                         }
                           
