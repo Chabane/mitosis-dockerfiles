@@ -16,7 +16,7 @@ pipelineJob("nodejs-pipeline") {
                         }
                           
                         stage ("test") {
-                            sh 'npm run test -watch=false'
+                            sh 'npm run test'
                         }
                        
                         stage ("build") {
