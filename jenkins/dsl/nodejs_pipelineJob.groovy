@@ -4,7 +4,7 @@ pipelineJob("nodejs-pipeline") {
             sandbox()
             script("""
                 node {
-                      sh 'nvm install 6 && nvm use 6'
+                   docker.image('node:7.4.0-alpine').inside {
 
                         stage ("checkout") {
                             git url : 'https://github.com/NirbyApp/mitosis-microservice-nodejs-angular.git'
@@ -26,7 +26,8 @@ pipelineJob("nodejs-pipeline") {
                         stage ("deploy"){
                             sh 'docker build -t mitosis/microservice-nodejs .'
                             sh 'docker service create --name microservice-nodejs --publish 9992:80 --network microservices-net --replicas 2 mitosis/microservice-nodejs'
-                        }                      
+                        }       
+                    }               
                 }             
             """.stripIndent())
         }
