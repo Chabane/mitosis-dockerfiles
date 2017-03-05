@@ -4,14 +4,13 @@ pipelineJob("nodejs-pipeline") {
             sandbox()
             script("""
                 node {
-                   docker.image('node:7.4.0-alpine').inside {
+                   docker.image('node:boron').inside {
 
                         stage ("checkout") {
                             git url : 'https://github.com/NirbyApp/mitosis-microservice-nodejs-angular.git'
                         }
  
                         stage ("install") {
-                            sh 'npm install -g yarn'
                             sh 'yarn'
                         }
                           
@@ -19,7 +18,7 @@ pipelineJob("nodejs-pipeline") {
                         }
                        
                         stage ("build") {
-                            sh 'npm run prod'
+                            sh 'npm run build:prod'
                         }
                        
                         stage ("deploy"){
