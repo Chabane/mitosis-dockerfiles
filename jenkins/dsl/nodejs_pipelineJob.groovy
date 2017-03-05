@@ -16,7 +16,6 @@ pipelineJob("nodejs-pipeline") {
                         }
                           
                         stage ("test") {
-                            sh 'npm run test:phantomjs'
                         }
                        
                         stage ("build") {
