@@ -19,7 +19,7 @@ pipelineJob("nodejs-pipeline") {
                         }
                        
                         stage ("build") {
-                            sh 'npm run build'
+                            sh 'npm run prod'
                         }
                        
                         stage ("deploy"){
