@@ -31,8 +31,8 @@ pipelineJob("nodejs-pipeline") {
                                     sh 'docker service update --replicas 2 --image mitosis/microservice-nodejs microservice-nodejs'
                                 }    
                             }       
-                        }                             
-                    }             
+                     }                             
+                 }             
             """.stripIndent())
         }
     }
