@@ -1,4 +1,4 @@
-pipelineJob("spring5-gradle-pipeline") {
+pipelineJob('spring5-gradle-pipeline') {
     definition {
         cps {
             sandbox()
@@ -6,18 +6,18 @@ pipelineJob("spring5-gradle-pipeline") {
                 node {
                       def retstat = sh(script: 'docker service inspect microservice-spring-reactor', returnStatus: true)
 
-                      stage ("checkout") {
+                      stage ('checkout') {
                         git url : 'https://github.com/NirbyApp/mitosis-microservice-spring-reactor.git'
                       }     
-                      stage ("test") {
+                      stage ('test') {
                         sh './gradlew test'
                       }
 
-                      stage ("build") {
+                      stage ('build') {
                         sh './gradlew build'
                       }
 
-                      stage ("deploy") {
+                      stage ('deploy') {
                         sh 'docker build -t mitosis/microservice-spring-reactor .'
                         if (retstat == 1) {
                             sh 'docker service create --name microservice-spring-reactor --publish 9991:8080 --network microservices-net --replicas 2 mitosis/microservice-spring-reactor'  
