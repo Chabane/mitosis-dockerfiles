@@ -17,7 +17,7 @@ RUN set -x \
 	&& docker -v
 
 # Install default plugins
-RUN /usr/local/bin/install-plugins.sh ansible:0.5 artifactory:2.8.2 sonar:2.5 git:3.0.1 subversion:2.7.1 matrix-auth:1.4 workflow-aggregator:2.4 docker-workflow:1.9.1 docker-commons:1.5 blueocean:1.0.0-b13 job-dsl:1.53 pipeline-maven:0.4 swarm:2.2 kubernetes:0.10 nodejs:1.1.2
+RUN /usr/local/bin/install-plugins.sh ansible:0.6.2 artifactory:2.12.2 sonar:2.6.1 git:3.4.0 subversion:2.9 matrix-auth:1.7 workflow-aggregator:2.5 docker-workflow:1.12 docker-commons:1.8 blueocean:1.2.0 job-dsl:1.64 pipeline-maven:3.0.0 swarm:3.4 kubernetes:0.12 nodejs:1.2.3
 
 ENV JENKINS_USER admin
 ENV JENKINS_PASS admin
