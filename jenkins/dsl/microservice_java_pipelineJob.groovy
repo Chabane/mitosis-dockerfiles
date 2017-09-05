@@ -1,4 +1,4 @@
-pipelineJob('spring5-gradle-pipeline') {
+pipelineJob('microservice-java-pipeline') {
     scm {
         git {
             remote {

@@ -1,4 +1,4 @@
-pipelineJob('nodejs-pipeline') {
+pipelineJob('microservice-nodejs-pipeline') {
     scm {
         git {
             remote {
