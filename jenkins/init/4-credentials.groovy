@@ -2,6 +2,9 @@ import jenkins.model.*
 import com.cloudbees.plugins.credentials.CredentialsScope
 import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl
 
+def env = System.getenv()
+
+// https://stackoverflow.com/a/37618881
 def addPassword = { username, new_password ->
    
         def credentials_store = Jenkins.instance.getExtensionList(
@@ -24,4 +27,4 @@ def addPassword = { username, new_password ->
         }
 }
 
-addPassword('admin', 'password')
+addPassword(env.ARTIFACTORY_USER, env.ARTIFACTORY_PASSWORD)
