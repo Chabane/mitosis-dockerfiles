@@ -1,5 +1,6 @@
 import jenkins.model.*
 import hudson.security.*
+import jenkins.security.*
 
 def env = System.getenv()
 
@@ -11,4 +12,6 @@ def user = jenkins.getSecurityRealm().createAccount(env.JENKINS_USER, env.JENKIN
 user.save()
 
 jenkins.getAuthorizationStrategy().add(Jenkins.ADMINISTER, 'admin')
+
 jenkins.save()
+
