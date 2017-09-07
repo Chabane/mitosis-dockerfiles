@@ -5,6 +5,7 @@ import hudson.plugins.sonar.model.TriggersConfig
 import hudson.plugins.sonar.utils.SQServerVersions
 import hudson.tools.*
 
+// https://github.com/Accenture/adop-jenkins/blob/master/resources/init.groovy.d/adop_sonar.groovy
 // Check if enabled
 def env = System.getenv()
 
