@@ -11,7 +11,7 @@ jenkins.setAuthorizationStrategy(new GlobalMatrixAuthorizationStrategy())
 def user = jenkins.getSecurityRealm().createAccount(env.JENKINS_USER, env.JENKINS_PASSWORD)
 user.save()
 
-jenkins.getAuthorizationStrategy().add(Jenkins.ADMINISTER, 'admin')
+jenkins.getAuthorizationStrategy().add(Jenkins.ADMINISTER, env.JENKINS_USER)
 
 jenkins.save()
 
