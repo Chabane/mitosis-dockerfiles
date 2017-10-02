@@ -1,4 +1,4 @@
-FROM jenkins:2.60.2
+FROM jenkins:2.60.3
 MAINTAINER Nirby
 
 USER root
@@ -17,18 +17,27 @@ RUN set -x \
 	&& docker -v
 
 # Download and install Gradle
+ENV GRADLE_VERSION 3.5
 RUN \
     cd /usr/local && \
-    curl -L https://services.gradle.org/distributions/gradle-3.5-bin.zip -o gradle-3.5-bin.zip && \
-    unzip gradle-3.5-bin.zip && \
-    rm gradle-3.5-bin.zip
+    curl -L https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip -o gradle-$GRADLE_VERSION-bin.zip && \
+    unzip gradle-$GRADLE_VERSION-bin.zip && \
+    rm gradle-$GRADLE_VERSION-bin.zip
 
-# Export some environment variables
-ENV GRADLE_HOME=/usr/local/gradle-3.5
+# Export Gradle
+ENV GRADLE_HOME=/usr/local/gradle-$GRADLE_VERSION
 ENV PATH=$PATH:$GRADLE_HOME/bin
 
+# Download and install sbt
+ENV SBT_VERSION 1.0.1
+
+RUN \
+  curl -L -o sbt-$SBT_VERSION.deb https://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb && \
+  dpkg -i sbt-$SBT_VERSION.deb && \
+  rm sbt-$SBT_VERSION.deb
+
 # Install default plugins
-RUN /usr/local/bin/install-plugins.sh ansible:0.6.2 artifactory:2.12.2 sonar:2.6.1 git:3.5.1 subversion:2.9 matrix-auth:1.7 workflow-aggregator:2.5 docker-workflow:1.12 docker-commons:1.8 blueocean:1.2.0 job-dsl:1.64 pipeline-maven:3.0.0 swarm:3.4 kubernetes:1.0 nodejs:1.2.3 gradle:1.27.1 authorize-project:1.3.0
+RUN /usr/local/bin/install-plugins.sh ansible:0.6.2 artifactory:2.12.2 sonar:2.6.1 git:3.5.1 subversion:2.9 matrix-auth:1.7 workflow-aggregator:2.5 docker-workflow:1.12 docker-commons:1.8 blueocean:1.2.0 job-dsl:1.64 pipeline-maven:3.0.0 swarm:3.4 kubernetes:1.0 nodejs:1.2.3 gradle:1.27.1 authorize-project:1.3.0 sbt:1.5
 
 # Skip initial setup
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
